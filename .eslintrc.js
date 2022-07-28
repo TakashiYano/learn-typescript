@@ -5,6 +5,7 @@ module.exports = {
   settings: { tailwindcss: { groupByResponsive: true } },
   plugins: [
     "simple-import-sort",
+    "sort-destructure-keys",
     "tailwindcss",
     "import-access",
     "testing-library",
@@ -16,6 +17,7 @@ module.exports = {
     "prettier",
   ],
   rules: {
+    curly: "error",
     "no-console": ["error", { allow: ["warn", "info", "error"] }],
     "no-restricted-syntax": [
       "error",
@@ -29,6 +31,7 @@ module.exports = {
       "error",
       { paths: [{ name: "react", importNames: ["default"] }] },
     ],
+
     // react
     "react/display-name": "error",
     "react/jsx-handler-names": [
@@ -36,17 +39,20 @@ module.exports = {
       {
         eventHandlerPrefix: "handle",
         eventHandlerPropPrefix: "on",
-        checkLocalVariables: true,
+        checkLocalVariables: false,
         checkInlineFunction: true,
       },
     ],
     "react/destructuring-assignment": ["error", "never"],
-    // import
+
+    // sort
     "import/newline-after-import": "error",
     "import/no-default-export": "error",
     "import-access/jsdoc": "error",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
+    "sort-destructure-keys/sort-destructure-keys": 2,
+
     // @typescript-eslint
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-var-requires": "off",
@@ -61,8 +67,23 @@ module.exports = {
     ],
     "@typescript-eslint/naming-convention": [
       "error",
-      { selector: ["typeAlias", "typeParameter"], format: ["PascalCase"] },
-      { selector: ["property", "method"], format: ["camelCase"] },
+      // typeLike (class, interface, typeAlias, enum, typeParameter) は PascalCase
+      {
+        selector: ["typeLike"],
+        format: ["PascalCase"],
+      },
+      // function, method (classMethod, objectLiteralMethod, typeMethod) は camelCase
+      {
+        selector: ["function", "method"],
+        format: ["camelCase"],
+      },
+      // function 以外の variable, parameter は camelCase
+      {
+        selector: ["variable", "parameter"],
+        types: ["boolean", "string", "number", "array"],
+        format: ["camelCase"],
+      },
+      // boolean の variable は特定の prefix をつけた状態で PascalCase
       {
         selector: "variable",
         types: ["boolean"],
@@ -71,6 +92,7 @@ module.exports = {
         filter: { regex: "^_", match: false },
       },
     ],
+
     // jsx-a11y
     "jsx-a11y/no-autofocus": "off",
     "jsx-a11y/anchor-is-valid": [
@@ -90,27 +112,6 @@ module.exports = {
         "next.config.mjs",
       ],
       rules: { "import/no-default-export": "off" },
-    },
-    {
-      files: [
-        "src/pages/**/*.page.tsx",
-        "src/pages/api/**/*.page.ts",
-        "next.config.mjs",
-        "src/type/**/*.d.ts",
-      ],
-      rules: {
-        "@typescript-eslint/naming-convention": [
-          "error",
-          { selector: ["typeAlias", "typeParameter"], format: ["PascalCase"] },
-          { selector: ["classProperty", "method"], format: ["camelCase"] },
-          {
-            selector: "variable",
-            types: ["boolean"],
-            format: ["PascalCase"],
-            prefix: ["is", "has", "should"],
-          },
-        ],
-      },
     },
   ],
 };
