@@ -1,7 +1,7 @@
 import type { CustomNextPage } from "next";
 import { FluidLayout } from "src/layout";
 
-const IndexPage: CustomNextPage = () => {
+const RootPage: CustomNextPage = () => {
   const handleClick = () => {
     window.alert("Hello, World!");
   };
@@ -16,6 +16,6 @@ const IndexPage: CustomNextPage = () => {
   );
 };
 
-IndexPage.getLayout = FluidLayout;
+RootPage.getLayout = FluidLayout;
 
-export default IndexPage;
+export default RootPage;
