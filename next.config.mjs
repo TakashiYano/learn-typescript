@@ -11,7 +11,6 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   swcMinify: true,
-  // experimental: { concurrentFeatures: true, serverComponents: true },
 };
 
 export default nextConfig;
