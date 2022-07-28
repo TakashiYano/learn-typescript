@@ -63,11 +63,11 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["pages/**/*.tsx", "pages/api/**/*.ts", "next.config.mjs"],
+      files: ["src/pages/**/*.page.tsx", "src/pages/api/**/*.page.ts", "next.config.mjs"],
       rules: { "import/no-default-export": "off" },
     },
     {
-      files: ["pages/**/*.tsx", "pages/api/**/*.ts", "next.config.mjs", "src/type/**/*.d.ts"],
+      files: ["src/pages/**/*.page.tsx", "src/pages/api/**/*.page.ts", "next.config.mjs", "src/type/**/*.d.ts"],
       rules: {
         "@typescript-eslint/naming-convention": [
           "error",

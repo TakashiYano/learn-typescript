@@ -1,6 +1,7 @@
-import type { VFC } from "react";
+import type { CustomNextPage } from "next";
+import { FluidLayout } from "src/layout";
 
-export const Index: VFC = () => {
+const IndexPage: CustomNextPage = () => {
   const handleClick = () => {
     window.alert("Hello, World!");
   };
@@ -14,3 +15,7 @@ export const Index: VFC = () => {
     </div>
   );
 };
+
+IndexPage.getLayout = FluidLayout;
+
+export default IndexPage;
