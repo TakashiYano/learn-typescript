@@ -1,4 +1,4 @@
-import type { VFC } from "react";
+import type { FC } from "react";
 import { NavLink } from "src/component/Button";
 
 const items = [
@@ -10,7 +10,7 @@ const items = [
 /**
  * @package
  */
-export const Header: VFC = () => {
+export const Header: FC = () => {
   return (
     <div>
       <h1>Title</h1>
