@@ -4,6 +4,7 @@ import { NavLink } from "src/component/Button";
 const items = [
   { href: "/", label: "Root" },
   { href: "/about", label: "About" },
+  { href: "/twitter", label: "Twitter" },
 ];
 
 /**
